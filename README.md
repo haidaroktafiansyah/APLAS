@@ -24,7 +24,7 @@ Laravel
 
 | Folder Name | desc |
 |--|--|
-| *Topic* | What Chapter does i Tried
+| *Topic* | What chapter does i tried
 | *Laporan* | What ouput does i get |
 | *Random-Name* | Project or Source Code that i use to get the ouput |
 

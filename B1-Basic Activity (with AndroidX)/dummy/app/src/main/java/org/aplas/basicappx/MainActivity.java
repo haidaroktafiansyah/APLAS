@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         formBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ((ImageView)findViewById(R.id.imgFormula)).setVisibility((isChecked)?View.VISIBLE:View.INVISIBLE);(isChecked) ? imgView.setVisibility(imgView.VISIBLE) : imgView.setVisibility(imgView.INVISIBLE) ;
+                ((ImageView)findViewById(R.id.imgFormula)).setVisibility((isChecked)?View.VISIBLE:View.INVISIBLE); ;
             }
         });
     }

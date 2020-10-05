@@ -6,9 +6,12 @@ import androidx.appcompat.app.AlertDialog;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -28,18 +31,16 @@ public class MainActivity extends AppCompatActivity {
     private Spinner unitConv;
     private RadioGroup unitType;
     private CheckBox roundBox;
-    private CheckBox formBox;
     private ImageView imgView;
     private AlertDialog startDialog;
-    private ArrayAdapter adaptervarname;
+    private CheckBox formBox;
+
 
     MainActivity() {
         this.dist = new Distance();
         this.weight = new Weight();
         this.temp = new Temperature();
     }
-
-    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +64,21 @@ public class MainActivity extends AppCompatActivity {
                         ArrayAdapter<CharSequence> arr;
                         inputTxt.setText("0");
                         outputTxt.setText("0");
-                        if(resrab.getText().equals("Temperature")){
+                        if (resrab.getText().equals("Temperature")) {
                             arr = ArrayAdapter.createFromResource(unitType.getContext(), R.array.tempList, android.R.layout.simple_spinner_item);
                             imgView.setImageResource(R.drawable.temperature);
                             imgView.setTag(R.drawable.temperature);
                             arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             unitOri.setAdapter(arr);
                             unitConv.setAdapter(arr);
-                        }
-                        else if(resrab.getText().equals("Distance")){
-                            arr = ArrayAdapter.createFromResource(unitType.getContext(), R.array.distList , android.R.layout.simple_spinner_item);
+                        } else if (resrab.getText().equals("Distance")) {
+                            arr = ArrayAdapter.createFromResource(unitType.getContext(), R.array.distList, android.R.layout.simple_spinner_item);
                             imgView.setImageResource(R.drawable.distance);
                             imgView.setTag(R.drawable.distance);
                             arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             unitOri.setAdapter(arr);
                             unitConv.setAdapter(arr);
-                        }else{
+                        } else {
                             arr = ArrayAdapter.createFromResource(unitType.getContext(), R.array.weightList, android.R.layout.simple_spinner_item);
                             imgView.setImageResource(R.drawable.weight);
                             imgView.setTag(R.drawable.weight);
@@ -89,7 +89,51 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+
+        convertBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doConvert();
+            }
+        });
+
+        unitOri.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                doConvert();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                return;
+            }
+        });
+
+        unitConv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                doConvert();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                return;
+            }
+        });
+
+        roundBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                doConvert();
+            }
+        });
+
+        formBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ((ImageView)findViewById(R.id.imgFormula)).setVisibility((isChecked)?View.VISIBLE:View.INVISIBLE);(isChecked) ? imgView.setVisibility(imgView.VISIBLE) : imgView.setVisibility(imgView.INVISIBLE) ;
+            }
+        });
     }
+
 
     @Override
     protected void onStart() {
@@ -107,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         startDialog.show();
     }
 
-    ;
+
 
     protected double convertUnit(String sa, String sb, String sc, double da) {
 
@@ -120,8 +164,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    ;
-
     protected String strResult(double da, boolean ba) {
         DecimalFormat dc = new DecimalFormat("#.#####");
         DecimalFormat dc2 = new DecimalFormat("#.##");
@@ -132,6 +174,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    ;
+
+    protected void doConvert() {
+        double in = Double.parseDouble(inputTxt.getText().toString());
+        RadioButton rab = (RadioButton) findViewById(unitType.getCheckedRadioButtonId());
+        double res = convertUnit(rab.getText().toString(), unitOri.getSelectedItem().toString(), unitConv.getSelectedItem().toString(), in);
+        outputTxt.setText(strResult(res, roundBox.isChecked()));
+    }
+
+
 
 }

@@ -35,44 +35,21 @@ public class Temperature {
     }
 
     public double convert(String oriUnit, String convUnit, double value){
+
         if(oriUnit.equalsIgnoreCase("°C")){
-            if (convUnit.equalsIgnoreCase("°F")){
-                return getFahrenheit();
-            }
-            else if(convUnit.equalsIgnoreCase("°C")){
-                return getCelcius();
-            }
-            else{
-                return getKelvins();
-            }
+            setCelcius(value);
+        }else if(oriUnit.equalsIgnoreCase("°F")){
+            setFahrenheit(value);
         }else{
-            if(oriUnit.equalsIgnoreCase("°F")){
-                if(convUnit.equalsIgnoreCase("°C")){
-                    setFahrenheit(value);
-                    return getCelcius();
-                }else{
-                    if (convUnit.equalsIgnoreCase("°F")){
-                        return getFahrenheit();
-                    }else {
-                        setFahrenheit(value);
-                        return getKelvins();
-                    }
-                }
-            }
-            else{
-                if(convUnit.equalsIgnoreCase("°C")){
-                    setKelvins(value);
-                    return getCelcius();
-                }
-                else{
-                    if(convUnit.equalsIgnoreCase("°F")){
-                        setKelvins(value);
-                        return getFahrenheit();
-                    }else{
-                        return getKelvins();
-                    }
-                }
-            }
+            setKelvins(value);
+        }
+
+        if(convUnit.equalsIgnoreCase("°C")){
+            return getCelcius();
+        }else if(convUnit.equalsIgnoreCase("°F")){
+            return  getFahrenheit();
+        }else{
+            return getKelvins();
         }
 
     }

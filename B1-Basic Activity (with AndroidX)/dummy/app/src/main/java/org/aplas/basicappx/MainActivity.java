@@ -21,9 +21,10 @@ import android.widget.Spinner;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-    private Distance dist;
-    private Weight weight;
-    private Temperature temp;
+
+    private Distance dist = new Distance();
+    private Weight weight = new Weight();
+    private Temperature temp = new Temperature();
     private Button convertBtn;
     private EditText inputTxt;
     private EditText outputTxt;
@@ -35,17 +36,14 @@ public class MainActivity extends AppCompatActivity {
     private AlertDialog startDialog;
     private CheckBox formBox;
 
-
-    MainActivity() {
-        this.dist = new Distance();
-        this.weight = new Weight();
-        this.temp = new Temperature();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
         convertBtn = (Button) findViewById(R.id.convertButton);
         inputTxt = (EditText) findViewById(R.id.inputText);
         outputTxt = (EditText) findViewById(R.id.outputText);
@@ -181,7 +179,5 @@ public class MainActivity extends AppCompatActivity {
         double res = convertUnit(rab.getText().toString(), unitOri.getSelectedItem().toString(), unitConv.getSelectedItem().toString(), in);
         outputTxt.setText(strResult(res, roundBox.isChecked()));
     }
-
-
 
 }

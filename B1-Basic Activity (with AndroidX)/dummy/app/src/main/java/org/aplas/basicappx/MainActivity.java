@@ -41,9 +41,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         convertBtn = (Button) findViewById(R.id.convertButton);
         inputTxt = (EditText) findViewById(R.id.inputText);
         outputTxt = (EditText) findViewById(R.id.outputText);

@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         if (sa.equalsIgnoreCase("Temperature")) {
             return temp.convert(sb, sc, da);
         } else if (sa.equalsIgnoreCase("Distance")) {
-            return dist.convert(sb, sc, da);
+            return dist.convert(sb,sc,da);
         } else {
             return weight.convert(sb, sc, da);
         }

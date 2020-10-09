@@ -41,56 +41,25 @@ public class Distance {
 
     public double convert(String oriUnit, String convUnit, double value){
         if(oriUnit.equalsIgnoreCase("Mtr")){
-            if(convUnit.equalsIgnoreCase("Mtr")){
-                return getMeter();
-            }else if(convUnit.equalsIgnoreCase("Inc")){
-                return getInch();
-            }else if(convUnit.equalsIgnoreCase("Mil")){
-                return getMile();
-            }else{
-                return getFoot();
-            }
+            setMeter(value);
         }
         else if(oriUnit.equalsIgnoreCase("Inc")){
-            if(convUnit.equalsIgnoreCase("Mtr")){
-                setInch(value);
-                return getMeter();
-            }else if(convUnit.equalsIgnoreCase("Inc")){
-                return getInch();
-            }else if(convUnit.equalsIgnoreCase("Mil")){
-                setInch(value);
-                return getMile();
-            }else{
-                setInch(value);
-                return getFoot();
-            }
+            setInch(value);
         }
         else if(oriUnit.equalsIgnoreCase("Mil")){
-            if(convUnit.equalsIgnoreCase("Mtr")){
-                setMile(value);
-                return getMeter();
-            }else if(convUnit.equalsIgnoreCase("Inc")){
-                setMile(value);
-                return getInch();
-            }else if(convUnit.equalsIgnoreCase("Mil")){
-                return getMile();
-            }else{
-                setMile(value);
-                return getFoot();
-            }
+            setMile(value);
         }else{
-            if(convUnit.equalsIgnoreCase("Mtr")){
-                setFoot(value);
-                return getMeter();
-            }else if(convUnit.equalsIgnoreCase("Inc")){
-                setFoot(value);
-                return getInch();
-            }else if(convUnit.equalsIgnoreCase("Mil")){
-                setFoot(value);
-                return getMile();
-            }else{
-                return getFoot();
-            }
+            setFoot(value);
         }
+
+        if(convUnit.equalsIgnoreCase("Mtr")){
+            return getMeter();
+        }
+        else if(convUnit.equalsIgnoreCase("Inc")){
+            return getInch();
+        }
+        else if(convUnit.equalsIgnoreCase("Mil")){
+            return getMile();
+        }else return getFoot();
     }
 }

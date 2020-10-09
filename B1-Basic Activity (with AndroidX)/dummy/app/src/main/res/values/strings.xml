@@ -12,6 +12,7 @@
     <string name="rbDist">Distance</string>
     <string name="rbTemp">Temperature</string>
     <string name="rbWeight">Weight</string>
+    <string name="distance">Distance</string>
 
     <string-array
         name="tempList">

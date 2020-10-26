@@ -1,10 +1,8 @@
 # APLAS
 Developing A New Submission Project
 
-# Project For Submission developed with Laravel
+# Project For Submission
 
-Laravel
-# Laravel Description
 |  |  |
 |--|--|
 | Website | https://laravel.com/ |

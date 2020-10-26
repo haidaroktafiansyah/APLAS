@@ -5,7 +5,6 @@ Developing A New Submission Project
 
 |  |  |
 |--|--|
-| Website | https://laravel.com/ |
 | Year | 2020 |
 | Institution | jti.polinema.ac.id |
 
